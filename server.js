@@ -2,6 +2,8 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;  //process.env is an object that stores all of our env variables as key value pairs. PORT is the property which heroku is looking for. This will not work when we run locally so we set a default port using OR operator
+
 var app = express();
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
@@ -58,6 +60,7 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server is up and running');
+app.listen(port, () => {
+  //console.log('Server is up and running');
+  console.log(`Server is up on port ${port}`);
 });
